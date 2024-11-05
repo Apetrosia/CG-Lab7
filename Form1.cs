@@ -14,7 +14,7 @@ namespace CG_Lab
         private enum RenderingOp
         {
             DrawCube = 0, DrawTetrahedron, DrawOctahedron, DrawIcosahedron, DrawDodecahedron,
-            Func1, Func2, Func3
+            Func1, Func2, Func3, Func4
         }
 
         private enum AffineOp { Move = 0, Scaling, Rotation, LineRotation, AxisXRotation, AxisYRotation, AxisZRotation }
@@ -66,32 +66,14 @@ namespace CG_Lab
                 foreach (var vertexIndex in face.Vertices)
                 {
                     Vertex v = ph.Vertices[vertexIndex];
-
-                    //points.Add(ProjectParallel(v));
                     Vertex projectedVertex;
-                    /*switch (plane)
-                    {
-                        case "XY":
-                            projectedVertex = new Vertex(v.X, v.Y, v.Z);
-                            break;
-                        case "YZ":
-                            projectedVertex = new Vertex(v.Y, v.Z , v.X);
-                            break;
-                        case "XZ":
-                            projectedVertex = new Vertex(v.X, v.Z , v.Y);
-                            break;
-                        default:
-                            throw new ArgumentException("Invalid plane. Use 'XY', 'YZ', or 'XZ'.");
-                    }*/
+
                     projectedVertex = new Vertex(v.X, v.Y, v.Z);
-                    //PointF projectedPoint = new PointF(projectedVertex.X, projectedVertex.Y);
                     PointF projectedPoint = projectedVertex.GetProjection(projectionListBox.SelectedIndex, pictureBox1.Width / 2, pictureBox1.Height / 2,
                         (float)axisXNumeric.Value, (float)axisYNumeric.Value);
+
                     points.Add(projectedPoint);
                 }
-
-                // g.FillPolygon(Brushes.Red, points.ToArray());
-
                 g.DrawPolygon(defaultPen, points.ToArray());
             }
 
@@ -114,6 +96,7 @@ namespace CG_Lab
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             g.Clear(pictureBox1.BackColor);
+            double centerX, centerY, centerZ;
 
             switch (comboBox1.SelectedIndex)
             {
@@ -153,12 +136,52 @@ namespace CG_Lab
                                              currPlane);
                     break;
                 case (int)RenderingOp.Func1:
-                    DrawPolyhedron(currentPolyhedron = PolyHedron.GetFunc1((float)numericX0.Value, (float)numericX1.Value,
-                        (float)numericY0.Value, (float)numericY1.Value, (float)stepNumeric.Value)
-                                             .Rotated(90, 10, 0)
-                                             .Scaled(100, 100, 100)
-                                             .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0),
-                                             currPlane);
+                    centerX = 0;
+                    centerY = 0;
+                    centerZ = 0;
+                    currentPolyhedron = PolyHedron.GetFunc1((float)numericX0.Value, (float)numericX1.Value,
+                        (float)numericY0.Value, (float)numericY1.Value, (float)stepNumeric.Value);
+                    currentPolyhedron.FindCenter(currentPolyhedron.Vertices, ref centerX, ref centerY, ref centerZ);
+                    currentPolyhedron = currentPolyhedron
+                        .Scaled(100, 100, 100)
+                        .Moved(pictureBox1.Width / 2 - (float)centerX, pictureBox1.Height / 2 - (float)centerY, 0);
+                    DrawPolyhedron(currentPolyhedron, currPlane);
+                    break;
+                case (int)RenderingOp.Func2:
+                    centerX = 0;
+                    centerY = 0;
+                    centerZ = 0;
+                    currentPolyhedron = PolyHedron.GetFunc2((float)numericX0.Value, (float)numericX1.Value,
+                        (float)numericY0.Value, (float)numericY1.Value, (float)stepNumeric.Value);
+                    currentPolyhedron.FindCenter(currentPolyhedron.Vertices, ref centerX, ref centerY, ref centerZ);
+                    currentPolyhedron = currentPolyhedron
+                        .Scaled(100, 100, 100)
+                        .Moved(pictureBox1.Width / 2 - (float)centerX, pictureBox1.Height / 2 - (float)centerY, 0);
+                    DrawPolyhedron(currentPolyhedron, currPlane);
+                    break;
+                case (int)RenderingOp.Func3:
+                    centerX = 0;
+                    centerY = 0;
+                    centerZ = 0;
+                    currentPolyhedron = PolyHedron.GetFunc3((float)numericX0.Value, (float)numericX1.Value,
+                        (float)numericY0.Value, (float)numericY1.Value, (float)stepNumeric.Value);
+                    currentPolyhedron.FindCenter(currentPolyhedron.Vertices, ref centerX, ref centerY, ref centerZ);
+                    currentPolyhedron = currentPolyhedron
+                        .Scaled(100, 100, 100)
+                        .Moved(pictureBox1.Width / 2 - (float)centerX, pictureBox1.Height / 2 - (float)centerY, 0);
+                    DrawPolyhedron(currentPolyhedron, currPlane);
+                    break;
+                case (int)RenderingOp.Func4:
+                    centerX = 0;
+                    centerY = 0;
+                    centerZ = 0;
+                    currentPolyhedron = PolyHedron.GetFunc4((float)numericX0.Value, (float)numericX1.Value,
+                        (float)numericY0.Value, (float)numericY1.Value, (float)stepNumeric.Value);
+                    currentPolyhedron.FindCenter(currentPolyhedron.Vertices, ref centerX, ref centerY, ref centerZ);
+                    currentPolyhedron = currentPolyhedron
+                        .Scaled(100, 100, 100)
+                        .Moved(pictureBox1.Width / 2 - (float)centerX, pictureBox1.Height / 2 - (float)centerY, 0);
+                    DrawPolyhedron(currentPolyhedron, currPlane);
                     break;
             }
         }
@@ -224,7 +247,6 @@ namespace CG_Lab
                                                        .Scaled((float)numericUpDown1.Value, (float)numericUpDown2.Value, (float)numericUpDown3.Value)
                                                        .Moved(anchor.X, anchor.Y, anchor.Z),
                                                        currPlane);
-
                     break;
 
                 case (int)AffineOp.Rotation:
@@ -243,18 +265,6 @@ namespace CG_Lab
                     float l = v.X / length;
                     float m = v.Y / length;
                     float n = v.Z / length;
-
-                    /*
-                    DrawPolyhedron(currentPolyhedron = currentPolyhedron
-                                                       .Moved(-anchor.X, -anchor.Y, -anchor.Z)
-                                                       .ApplyRx(l, m, n)
-                                                       .ApplyRy(l, m, n)
-                                                       .ApplyRz((float)numericUpDown1.Value)
-                                                       .ApplyRy(l, m, n, true)
-                                                       .ApplyRx(l, m, n, true)
-                                                       .Moved(anchor.X, anchor.Y, anchor.Z),
-                                                       currPlane);
-                    */
                     DrawPolyhedron(currentPolyhedron = currentPolyhedron
                         .Moved(-anchor.X, -anchor.Y, -anchor.Z)
                         .LineRotated(l, m, n, (float)numericUpDown1.Value)
@@ -916,18 +926,131 @@ namespace CG_Lab
 
         public static PolyHedron GetFunc1(float x0, float x1, float y0, float y1, float step)
         {
+            if (x0 > x1)
+            {
+                float x = x0;
+                x0 = x1;
+                x1 = x;
+            }
+            if (y0 > y1)
+            {
+                float y = y0;
+                y0 = y1;
+                y1 = y;
+            }
+
             var surface = new PolyHedron();
-            int xLength = (int)((x1 - x0) / step + 1);
+            int xLength = (int)((y1 - y0) / step + 1);
             int ind = -1;
 
-            for (float i = x0; i  <= x1; i+= step)
+            for (float i = x0; i <= x1; i+= step)
             {
                 for (float j = y0; j <= y1; j += step)
                 {
-                    surface.Vertices.Add(new Vertex(i, j, i*i + j*j));
+                    surface.Vertices.Add(new Vertex(i, -(i*i + j*j), j));
                     ind++;
                     if (i != x0 && j != y0)
-                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind = xLength));
+                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                }
+            }
+
+            return surface;
+        }
+
+        public static PolyHedron GetFunc2(float x0, float x1, float y0, float y1, float step)
+        {
+            if (x0 > x1)
+            {
+                float x = x0;
+                x0 = x1;
+                x1 = x;
+            }
+            if (y0 > y1)
+            {
+                float y = y0;
+                y0 = y1;
+                y1 = y;
+            }
+
+            var surface = new PolyHedron();
+            int xLength = (int)((y1 - y0) / step + 1);
+            int ind = -1;
+
+            for (float i = x0; i <= x1; i += step)
+            {
+                for (float j = y0; j <= y1; j += step)
+                {
+                    surface.Vertices.Add(new Vertex(i, (float)-(Math.Sin(i) + Math.Cos(j)), j));
+                    ind++;
+                    if (i != x0 && j != y0)
+                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                }
+            }
+
+            return surface;
+        }
+
+        public static PolyHedron GetFunc3(float x0, float x1, float y0, float y1, float step)
+        {
+            if (x0 > x1)
+            {
+                float x = x0;
+                x0 = x1;
+                x1 = x;
+            }
+            if (y0 > y1)
+            {
+                float y = y0;
+                y0 = y1;
+                y1 = y;
+            }
+
+            var surface = new PolyHedron();
+            int xLength = (int)((y1 - y0) / step + 1);
+            int ind = -1;
+
+            for (float i = x0; i <= x1; i += step)
+            {
+                for (float j = y0; j <= y1; j += step)
+                {
+                    surface.Vertices.Add(new Vertex(i, (float)-(Math.Sin(i) * Math.Cos(j)), j));
+                    ind++;
+                    if (i != x0 && j != y0)
+                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                }
+            }
+
+            return surface;
+        }
+
+        public static PolyHedron GetFunc4(float x0, float x1, float y0, float y1, float step)
+        {
+            if (x0 > x1)
+            {
+                float x = x0;
+                x0 = x1;
+                x1 = x;
+            }
+            if (y0 > y1)
+            {
+                float y = y0;
+                y0 = y1;
+                y1 = y;
+            }
+
+            var surface = new PolyHedron();
+            int xLength = (int)((y1 - y0) / step + 1);
+            int ind = -1;
+
+            for (float i = x0; i <= x1; i += step)
+            {
+                for (float j = y0; j <= y1; j += step)
+                {
+                    double r = i * i + j * j + 1;
+                    surface.Vertices.Add(new Vertex(i, (float)-(5 * (Math.Cos(r) / r + 0.1)), j));
+                    ind++;
+                    if (i != x0 && j != y0)
+                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
                 }
             }
 

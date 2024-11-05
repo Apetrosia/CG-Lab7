@@ -97,7 +97,10 @@
             "Отобразить октаэдр",
             "Отобразить икосаэдр",
             "Отобразить додекаэдр",
-            "Отобразить x*x+y*y"});
+            "Отобразить x*x+y*y",
+            "Отобразить sin(x) + cos(y)",
+            "Отобразить sin(x) * cos(y)",
+            "Отобразить 5*(cos(r)/r+0.1)"});
             this.comboBox1.Location = new System.Drawing.Point(1119, 18);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBox1.Name = "comboBox1";
