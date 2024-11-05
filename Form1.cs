@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms.VisualStyles;
-using static System.Windows.Forms.AxHost;
-using System.Drawing.Drawing2D;
+using System.Text;
+using System.IO;
+using System.Threading;
 
 namespace CG_Lab
 {
@@ -43,6 +43,8 @@ namespace CG_Lab
             reflectionComboBox.Items.Add("Отображение на XZ");
 
             comboBox1.SelectedIndex = 0;
+
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
         }
 
         private PointF ProjectParallel(Vertex v)
@@ -102,7 +104,7 @@ namespace CG_Lab
             {
                 case (int)RenderingOp.DrawCube:
                     DrawPolyhedron(currentPolyhedron = PolyHedron.GetCube()
-                                             //.Rotated(20, 20, 0)
+                                             // .Rotated(20, 20, 0)
                                              .Scaled(100, 100, 100)
                                              .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0),
                                              currPlane);
@@ -372,7 +374,7 @@ namespace CG_Lab
             DrawPolyhedron(currentPolyhedron, currPlane);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             profilePoints.Clear();
             g.Clear(pictureBox1.BackColor);
@@ -382,6 +384,141 @@ namespace CG_Lab
         private void numericUpDownDivisions_ValueChanged(object sender, EventArgs e)
         {
             DrawRevolveFigure_Click(sender,e);
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveModel();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadModel();
+        }
+
+        private void SaveModel()
+        {
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    currentPolyhedron.SaveToObj(saveFileDialog1.FileName);
+                    MessageBox.Show("Модель успешно сохранена.", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void LoadModel()
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DrawPolyhedron(currentPolyhedron = PolyHedron.LoadFromObj(openFileDialog1.FileName)
+                        .Scaled(100, 100, 100)
+                        .RotatedXAxis(180)
+                        .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0), currPlane);
+                    MessageBox.Show("Модель успешно загружена.", "Загрузка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stepNumeric_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericY1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericY0_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericX1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericX0_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelScale_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -404,6 +541,11 @@ namespace CG_Lab
             return new Vertex(Convert.ToSingle(m[0, 0]), Convert.ToSingle(m[0, 1]), Convert.ToSingle(m[0, 2]));
         }
 
+        public static implicit operator Normal(Matrix<T> m)
+        {
+            return new Normal(Convert.ToSingle(m[0, 0]), Convert.ToSingle(m[0, 1]), Convert.ToSingle(m[0, 2]));
+        }
+
         public Matrix(Vertex vertex)
         {
             Values = new T[1, 4] {
@@ -416,9 +558,26 @@ namespace CG_Lab
             };
         }
 
+        public Matrix(Normal normal)
+        {
+            Values = new T[1, 4] {
+                  {
+                    (T)Convert.ChangeType(normal.NX, typeof(T)),
+                    (T)Convert.ChangeType(normal.NY, typeof(T)),
+                    (T)Convert.ChangeType(normal.NZ, typeof(T)),
+                    (T)Convert.ChangeType(1, typeof(T))
+                  }
+            };
+        }
+
         public static implicit operator Matrix<T>(Vertex vertex)
         {
             return new Matrix<T>(vertex);
+        }
+
+        public static implicit operator Matrix<T>(Normal normal)
+        {
+            return new Matrix<T>(normal);
         }
 
         public static Matrix<T> operator *(Matrix<T> A, Matrix<T> B)
@@ -460,6 +619,32 @@ namespace CG_Lab
 
     }
 
+    // Нормаль вершины
+    public struct Normal
+    {
+        public float NX { get; private set; }
+        public float NY { get; private set; }
+        public float NZ { get; private set; }
+
+        public Normal(float nx, float ny, float nz)
+        {
+            // Нормируем сразу
+            float length = (float)Math.Sqrt(nx * nx + ny * ny + nz * nz);
+            if (length > 0)
+            {
+                NX = nx / length;
+                NY = ny / length;
+                NZ = nz / length;
+            }
+            else
+            {
+                NX = 0;
+                NY = 0;
+                NZ = 0;
+            }
+        }
+    }
+
     public struct Vertex
     {
         public float X { get; private set; }
@@ -474,10 +659,41 @@ namespace CG_Lab
             Y = y;
             Z = z;
         }
+        
         public Vertex Clone()
         {
             return new Vertex(X, Y, Z);
         }
+
+        // Метод для вычитания двух векторов (вершин)
+        public static Vertex Subtract(Vertex v1, Vertex v2)
+        {
+            return new Vertex(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
+        }
+
+        // Нормализация вектора
+        public Vertex Normalize()
+        {
+            float length = (float)Math.Sqrt(X * X + Y * Y + Z * Z);
+            return new Vertex(X / length, Y / length, Z / length);
+        }
+
+        // Метод для вычисления скалярного произведения двух векторов
+        public static float Dot(Vertex v1, Vertex v2)
+        {
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+        }
+
+        // Дополнительный метод для вычисления векторного произведения (для нормалей)
+        public static Vertex Cross(Vertex v1, Vertex v2)
+        {
+            return new Vertex(
+                v1.Y * v2.Z - v1.Z * v2.Y,
+                v1.Z * v2.X - v1.X * v2.Z,
+                v1.X * v2.Y - v1.Y * v2.X
+            );
+        }
+
         public float DistanceTo(in Vertex other)
         {
             float xDelta = X - other.X;
@@ -575,16 +791,20 @@ namespace CG_Lab
 
         public List<Vertex> Vertices { get; private set; }
 
+        public List<Normal> Normals { get; private set; }
+
         public PolyHedron()
         {
             Faces = new List<Face>();
             Vertices = new List<Vertex>();
+            Normals = new List<Normal>();
         }
 
-        public PolyHedron(List<Face> faces, List<Vertex> vertices)
+        public PolyHedron(List<Face> faces, List<Vertex> vertices, List<Normal> normals)
         {
             Faces = faces;
             Vertices = vertices;
+            Normals = normals;
         }
 
         public void FindCenter(List<Vertex> vertices, ref double a, ref double b, ref double c)
@@ -624,6 +844,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= RxMatrix;
+                newPoly.Normals[i] *= RxMatrix;
             }
 
             return newPoly;
@@ -647,6 +868,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= RxMatrix;
+                newPoly.Normals[i] *= RxMatrix;
             }
 
             return newPoly;
@@ -670,6 +892,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= RyMatrix;
+                newPoly.Normals[i] *= RyMatrix;
             }
 
             return newPoly;
@@ -695,6 +918,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= RzMatrix;
+                newPoly.Normals[i] *= RzMatrix;
             }
 
             return newPoly;
@@ -760,6 +984,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= translationMatrix;
+                newPoly.Normals[i] *= translationMatrix;
             }
 
             return newPoly;
@@ -785,6 +1010,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= translationMatrix;
+                newPoly.Normals[i] *= translationMatrix;
             }
 
             return newPoly;
@@ -810,6 +1036,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= translationMatrix;
+                newPoly.Normals[i] *= translationMatrix;
             }
 
             return newPoly;
@@ -891,14 +1118,75 @@ namespace CG_Lab
             cube.Vertices.Add(new Vertex(1, 1, 1));
             cube.Vertices.Add(new Vertex(-1, 1, 1));
 
-            cube.Faces.Add(new Face(0, 1, 2, 3));
-            cube.Faces.Add(new Face(4, 5, 6, 7));
-            cube.Faces.Add(new Face(0, 1, 5, 4));
-            cube.Faces.Add(new Face(3, 2, 6, 7));
-            cube.Faces.Add(new Face(1, 2, 6, 5));
-            cube.Faces.Add(new Face(0, 3, 7, 4));
+            cube.Faces.Add(new Face(0, 3, 2, 1)); // Нижняя грань
+            cube.Faces.Add(new Face(4, 7, 6, 5)); // Верхняя грань
+            cube.Faces.Add(new Face(0, 4, 5, 1)); // Передняя грань
+            cube.Faces.Add(new Face(3, 7, 6, 2)); // Задняя грань
+            cube.Faces.Add(new Face(1, 5, 6, 2)); // Правая грань
+            cube.Faces.Add(new Face(0, 3, 7, 4)); // Левая грань
+
+            CalculateNormals(cube);
 
             return cube;
+        }
+
+        private static void CalculateNormals(PolyHedron poly)
+        {
+            var vertexNormals = new Dictionary<int, List<Normal>>();
+
+            // Вычисляем нормали для каждой грани
+            foreach (var face in poly.Faces)
+            {
+                // достаточно 3 вершин для нормали
+                var normal = CalculateFaceNormal(poly.Vertices[face.Vertices[0]],
+                                                 poly.Vertices[face.Vertices[1]],
+                                                 poly.Vertices[face.Vertices[2]]);
+
+                
+                foreach (var vertexIndex in face.Vertices)
+                {
+                    if (!vertexNormals.ContainsKey(vertexIndex))
+                    {
+                        vertexNormals[vertexIndex] = new List<Normal>();
+                    }
+                    vertexNormals[vertexIndex].Add(normal);
+                }
+            }
+
+            // Устанавливаем усредненные нормали для каждой вершины
+            for (int i = 0; i < poly.Vertices.Count; i++)
+            {
+                if (vertexNormals.TryGetValue(i, out var normals))
+                {
+                    // Усредняем нормали
+                    float nx = 0, ny = 0, nz = 0;
+                    foreach (var normal in normals)
+                    {
+                        nx += normal.NX;
+                        ny += normal.NY;
+                        nz += normal.NZ;
+                    }
+
+                    poly.Normals.Add(new Normal(nx, ny, nz));
+                }
+            }
+        }
+
+        private static Normal CalculateFaceNormal(Vertex v1, Vertex v2, Vertex v3)
+        {
+            float ux = v2.X - v1.X;
+            float uy = v2.Y - v1.Y;
+            float uz = v2.Z - v1.Z;
+
+            float vx = v3.X - v1.X;
+            float vy = v3.Y - v1.Y;
+            float vz = v3.Z - v1.Z;
+
+            float nx = uy * vz - uz * vy;
+            float ny = uz * vx - ux * vz;
+            float nz = ux * vy - uy * vx;
+
+            return new Normal(nx, ny, nz);
         }
 
         public static PolyHedron GetTetrahedron()
@@ -910,10 +1198,12 @@ namespace CG_Lab
             tetra.Vertices.Add(new Vertex(1, 1, 1));
             tetra.Vertices.Add(new Vertex(-1, -1, 1));
 
-            tetra.Faces.Add(new Face(0, 1, 2));
-            tetra.Faces.Add(new Face(0, 1, 3));
-            tetra.Faces.Add(new Face(0, 2, 3));
-            tetra.Faces.Add(new Face(1, 2, 3));
+            tetra.Faces.Add(new Face(2, 1, 0));
+            tetra.Faces.Add(new Face(3, 1, 0));
+            tetra.Faces.Add(new Face(3, 2, 0));
+            tetra.Faces.Add(new Face(3, 2, 1));
+
+            CalculateNormals(tetra);
 
             return tetra;
         }
@@ -933,13 +1223,36 @@ namespace CG_Lab
 
             for (int i = 0; i < 8; i++)
             {
-                var faceVertices = octa.Vertices.Select((v, ind) => (v, ind))
-                                                .OrderBy(p => octaCenters[i].DistanceTo(in p.v))
-                                                .Select(p => p.ind)
-                                                .Take(3);
+                // Находим три ближайших центра к текущей вершине октаэдра
+                var faceVertices = octa.Vertices
+                    .Select((v, ind) => (v, ind))
+                    .OrderBy(p => octaCenters[i].DistanceTo(p.v))
+                    .Select(p => p.ind)
+                    .Take(3)
+                    .ToArray();
 
-                octa.Faces.Add(new Face(faceVertices.ToArray()));
+                // Проверка и упорядочивание вершин против часовой стрелки
+                Vertex v0 = octa.Vertices[faceVertices[0]];
+                Vertex v1 = octa.Vertices[faceVertices[1]];
+                Vertex v2 = octa.Vertices[faceVertices[2]];
+
+                var normal = Vertex.Cross(Vertex.Subtract(v1, v0), Vertex.Subtract(v2, v0)).Normalize();
+
+                // Проверка направления нормали (предполагаем направление взгляда наружу)
+                var centerToVertex = Vertex.Subtract(v0, octaCenters[i]).Normalize();
+
+                // Проверка направления нормали
+                if (Vertex.Dot(normal, centerToVertex) < 0)
+                {
+                    // Меняем порядок вершин, если нормаль направлена внутрь
+                    Array.Reverse(faceVertices);
+                }
+
+                // Добавляем упорядоченные вершины как грань
+                octa.Faces.Add(new Face(faceVertices));
             }
+
+            CalculateNormals(octa);
 
             return octa;
         }
@@ -986,11 +1299,11 @@ namespace CG_Lab
 
             for (int i = 1; i <= 8; i++)
             {
-                icosa.Faces.Add(new Face(i - 1, i, i + 1));
+                icosa.Faces.Add(new Face(i + 1, i, i - 1));
             }
 
-            icosa.Faces.Add(new Face(8, 9, 0));
-            icosa.Faces.Add(new Face(9, 0, 1));
+            icosa.Faces.Add(new Face(0, 9, 8));
+            icosa.Faces.Add(new Face(1, 0, 9));
 
             icosa.Vertices.Add(new Vertex(0, -(float)Math.Sqrt(5) / 2, 0));
             icosa.Vertices.Add(new Vertex(0, (float)Math.Sqrt(5) / 2, 0));
@@ -999,23 +1312,25 @@ namespace CG_Lab
 
             for (int i = 0; i < 4; i++)
             {
-                icosa.Faces.Add(new Face(10, number - 1, number + 1));
+                icosa.Faces.Add(new Face(number + 1, number - 1, 10));
 
                 number += 2;
             }
 
-            icosa.Faces.Add(new Face(10, 8, 0));
+            icosa.Faces.Add(new Face(0, 8, 10));
 
             number = 2;
 
             for (int i = 0; i < 4; i++)
             {
-                icosa.Faces.Add(new Face(11, number - 1, number + 1));
+                icosa.Faces.Add(new Face(number + 1, number - 1, 11));
 
                 number += 2;
             }
 
-            icosa.Faces.Add(new Face(11, 9, 1));
+            icosa.Faces.Add(new Face(1, 9, 11));
+
+            CalculateNormals(icosa);
 
             return icosa;
         }
@@ -1036,7 +1351,7 @@ namespace CG_Lab
                 var faceVertices = dodeca.Vertices.Select((v, ind) => (v, ind))
                                                 .OrderBy(p => icosa.Vertices[i].DistanceTo(in p.v))
                                                 .Select(p => p.ind)
-                                                .Take(5);
+                                                .Take(5).ToArray();
 
                 int first = faceVertices.First();
 
@@ -1046,13 +1361,33 @@ namespace CG_Lab
 
                 var lastTwo = rest.Skip(2).OrderBy(p => dodeca.Vertices[next].DistanceTo(in p.Item1));
 
-                dodeca.Faces.Add(new Face(faceVertices.Take(1)
+                faceVertices = faceVertices.Take(1)
                                           .Concat(new int[1] { next })
                                           .Concat(lastTwo.Select(p => p.ind))
                                           .Concat(rest.Select(p => p.ind).Skip(1).Take(1))
-                                          .ToArray()
-                                 ));
+                                          .ToArray();
+
+                // Проверка и упорядочивание вершин против часовой стрелки
+                Vertex v0 = dodeca.Vertices[faceVertices[0]];
+                Vertex v1 = dodeca.Vertices[faceVertices[1]];
+                Vertex v2 = dodeca.Vertices[faceVertices[2]];
+
+                var normal = Vertex.Cross(Vertex.Subtract(v1, v0), Vertex.Subtract(v2, v0)).Normalize();
+
+                // Проверка направления нормали (предполагаем направление взгляда наружу)
+                var centerToVertex = Vertex.Subtract(v0, icosa.Vertices[i]).Normalize();
+
+                // Проверка направления нормали
+                if (Vertex.Dot(normal, centerToVertex) < 0)
+                {
+                    // Меняем порядок вершин, если нормаль направлена внутрь
+                    Array.Reverse(faceVertices);
+                }
+
+                dodeca.Faces.Add(new Face(faceVertices));
             }
+
+            CalculateNormals(dodeca);
 
             return dodeca;
         }
@@ -1206,9 +1541,10 @@ namespace CG_Lab
 
         public PolyHedron Clone()
         {
-            var newPoly = new PolyHedron(this.Faces, new List<Vertex>(this.Vertices));
+            var newPoly = new PolyHedron(this.Faces, new List<Vertex>(this.Vertices), new List<Normal>(this.Normals));
             return newPoly;
         }
+
         public PolyHedron Reflected(string plane)
         {
             var newPoly = this.Clone();
@@ -1255,6 +1591,7 @@ namespace CG_Lab
             for (int i = 0; i < newPoly.Vertices.Count; i++)
             {
                 newPoly.Vertices[i] *= reflectionMatrix;
+                newPoly.Normals[i] *= reflectionMatrix;
             }
 
             return newPoly;
@@ -1311,6 +1648,110 @@ namespace CG_Lab
             }
 
             return newPoly;
+        }
+
+        public void SaveToObj(string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Сохраняем вершины
+            foreach (var vertex in Vertices)
+            {
+                sb.AppendLine($"v {vertex.X} {vertex.Y} {vertex.Z}");
+            }
+
+            // Сохраняем нормали вершин
+            foreach (var normal in Normals)
+            {
+                sb.AppendLine($"vn {normal.NX} {normal.NY} {normal.NZ}");
+            }
+
+            // Сохраняем грани
+            foreach (var face in Faces)
+            {
+                sb.Append("f");
+                foreach (var vertexIndex in face.Vertices)
+                {
+                    sb.Append($" {vertexIndex + 1}"); // OBJ индекс начинается с 1
+                }
+                sb.AppendLine();
+            }
+
+            File.WriteAllText(filePath, sb.ToString());
+        }
+
+        public static PolyHedron LoadFromObj(string filePath)
+        {
+            var polyhedron = new PolyHedron();
+            var lines = File.ReadAllLines(filePath);
+
+            var vertices = new List<Vertex>();
+            var normals = new List<Normal>();
+
+            foreach (var line in lines)
+            {
+                if (line.StartsWith("v "))
+                {
+                    var parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    float x = float.Parse(parts[1]);
+                    float y = float.Parse(parts[2]);
+                    float z = float.Parse(parts[3]);
+                    
+                    vertices.Add(new Vertex(x, y, z));
+                }
+                else if (line.StartsWith("vn "))
+                {
+                    var parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    float nx = float.Parse(parts[1]);
+                    float ny = float.Parse(parts[2]);
+                    float nz = float.Parse(parts[3]);
+
+                    normals.Add(new Normal(nx, ny, nz));
+                }
+                else if (line.StartsWith("f "))
+                {
+                    var parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    int[] vertexIndices = new int[parts.Length - 1];
+                    
+                    for (int i = 1; i < parts.Length; i++)
+                    {
+                        var indices = parts[i].Split('/');
+                        int vertexIndex = int.Parse(indices[0]) - 1;
+                        vertexIndices[i - 1] = vertexIndex;
+
+                        polyhedron.Vertices = new List<Vertex>(vertices);
+
+                        polyhedron.Vertices[vertexIndex] = new Vertex(
+                                vertices[vertexIndex].X,
+                                vertices[vertexIndex].Y,
+                                vertices[vertexIndex].Z
+                            );
+
+                        // Присваиваем нормаль, если она есть
+                        if (indices.Length > 2 && int.TryParse(indices[2], out int normalIndex))
+                        {
+                            polyhedron.Normals = new List<Normal>(normals);
+
+                            polyhedron.Normals[normalIndex - 1] = new Normal(
+                                    normals[normalIndex - 1].NX,
+                                    normals[normalIndex - 1].NY,
+                                    normals[normalIndex - 1].NZ
+                                );
+                        }
+                    }
+                    
+                    polyhedron.Faces.Add(new Face(vertexIndices));
+                }
+                else
+                {
+                    // Пропуск пока
+                }
+            }
+
+            return polyhedron;
         }
     }
 }
