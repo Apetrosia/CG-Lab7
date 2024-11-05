@@ -950,7 +950,7 @@ namespace CG_Lab
                     surface.Vertices.Add(new Vertex(i, -(i*i + j*j), j));
                     ind++;
                     if (i != x0 && j != y0)
-                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                        surface.Faces.Add(new Face(ind, ind - xLength, ind - xLength - 1, ind - 1));
                 }
             }
 
@@ -983,7 +983,7 @@ namespace CG_Lab
                     surface.Vertices.Add(new Vertex(i, (float)-(Math.Sin(i) + Math.Cos(j)), j));
                     ind++;
                     if (i != x0 && j != y0)
-                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                        surface.Faces.Add(new Face(ind, ind - xLength, ind - xLength - 1, ind - 1));
                 }
             }
 
@@ -1016,7 +1016,7 @@ namespace CG_Lab
                     surface.Vertices.Add(new Vertex(i, (float)-(Math.Sin(i) * Math.Cos(j)), j));
                     ind++;
                     if (i != x0 && j != y0)
-                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                        surface.Faces.Add(new Face(ind, ind - xLength, ind - xLength - 1, ind - 1));
                 }
             }
 
@@ -1050,7 +1050,7 @@ namespace CG_Lab
                     surface.Vertices.Add(new Vertex(i, (float)-(5 * (Math.Cos(r) / r + 0.1)), j));
                     ind++;
                     if (i != x0 && j != y0)
-                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind - xLength));
+                        surface.Faces.Add(new Face(ind, ind - xLength, ind - xLength - 1, ind - 1));
                 }
             }
 
