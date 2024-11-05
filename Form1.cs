@@ -11,7 +11,11 @@ namespace CG_Lab
 {
     public partial class Form1 : Form
     {
-        private enum RenderingOp { DrawCube = 0, DrawTetrahedron, DrawOctahedron, DrawIcosahedron, DrawDodecahedron }
+        private enum RenderingOp
+        {
+            DrawCube = 0, DrawTetrahedron, DrawOctahedron, DrawIcosahedron, DrawDodecahedron,
+            Func1, Func2, Func3
+        }
 
         private enum AffineOp { Move = 0, Scaling, Rotation, LineRotation, AxisXRotation, AxisYRotation, AxisZRotation }
 
@@ -142,6 +146,13 @@ namespace CG_Lab
                                              currPlane);
                     break;
                 case (int)RenderingOp.DrawDodecahedron:
+                    DrawPolyhedron(currentPolyhedron = PolyHedron.GetDodecahedron()
+                                             .Rotated(10, 10, 0)
+                                             .Scaled(200, 200, 200)
+                                             .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0),
+                                             currPlane);
+                    break;
+                case (int)RenderingOp.Func1:
                     DrawPolyhedron(currentPolyhedron = PolyHedron.GetDodecahedron()
                                              .Rotated(10, 10, 0)
                                              .Scaled(200, 200, 200)
@@ -900,6 +911,31 @@ namespace CG_Lab
             }
 
             return dodeca;
+        }
+
+        public static PolyHedron GetFunc1()
+        {
+            var surface = new PolyHedron();
+
+            /*
+            cube.Vertices.Add(new Vertex(-1, -1, -1));
+            cube.Vertices.Add(new Vertex(1, -1, -1));
+            cube.Vertices.Add(new Vertex(1, 1, -1));
+            cube.Vertices.Add(new Vertex(-1, 1, -1));
+            cube.Vertices.Add(new Vertex(-1, -1, 1));
+            cube.Vertices.Add(new Vertex(1, -1, 1));
+            cube.Vertices.Add(new Vertex(1, 1, 1));
+            cube.Vertices.Add(new Vertex(-1, 1, 1));
+
+            cube.Faces.Add(new Face(0, 1, 2, 3));
+            cube.Faces.Add(new Face(4, 5, 6, 7));
+            cube.Faces.Add(new Face(0, 1, 5, 4));
+            cube.Faces.Add(new Face(3, 2, 6, 7));
+            cube.Faces.Add(new Face(1, 2, 6, 5));
+            cube.Faces.Add(new Face(0, 3, 7, 4));
+            */
+
+            return surface;
         }
 
         public Vertex GetFaceCenter(Face face)
