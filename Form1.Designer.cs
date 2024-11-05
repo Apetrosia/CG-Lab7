@@ -215,7 +215,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1221, 563);
+            this.label1.Location = new System.Drawing.Point(1228, 540);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 20);
@@ -225,7 +225,7 @@
             // numericUpDown4
             // 
             this.numericUpDown4.DecimalPlaces = 2;
-            this.numericUpDown4.Location = new System.Drawing.Point(1140, 588);
+            this.numericUpDown4.Location = new System.Drawing.Point(1147, 565);
             this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             1000,
@@ -244,7 +244,7 @@
             // numericUpDown5
             // 
             this.numericUpDown5.DecimalPlaces = 2;
-            this.numericUpDown5.Location = new System.Drawing.Point(1240, 588);
+            this.numericUpDown5.Location = new System.Drawing.Point(1247, 565);
             this.numericUpDown5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             1000,
@@ -263,7 +263,7 @@
             // numericUpDown6
             // 
             this.numericUpDown6.DecimalPlaces = 2;
-            this.numericUpDown6.Location = new System.Drawing.Point(1336, 588);
+            this.numericUpDown6.Location = new System.Drawing.Point(1343, 565);
             this.numericUpDown6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             1000,
@@ -286,7 +286,7 @@
             "Перспективная",
             "Ортографическая",
             "Аксонометрическая"});
-            this.projectionListBox.Location = new System.Drawing.Point(1138, 719);
+            this.projectionListBox.Location = new System.Drawing.Point(1133, 813);
             this.projectionListBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.projectionListBox.Name = "projectionListBox";
             this.projectionListBox.Size = new System.Drawing.Size(280, 28);
@@ -297,7 +297,7 @@
             // axisXNumeric
             // 
             this.axisXNumeric.DecimalPlaces = 2;
-            this.axisXNumeric.Location = new System.Drawing.Point(1138, 787);
+            this.axisXNumeric.Location = new System.Drawing.Point(1133, 881);
             this.axisXNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.axisXNumeric.Maximum = new decimal(new int[] {
             360,
@@ -322,7 +322,7 @@
             // axisYNumeric
             // 
             this.axisYNumeric.DecimalPlaces = 2;
-            this.axisYNumeric.Location = new System.Drawing.Point(1239, 787);
+            this.axisYNumeric.Location = new System.Drawing.Point(1234, 881);
             this.axisYNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.axisYNumeric.Maximum = new decimal(new int[] {
             360,
@@ -347,7 +347,7 @@
             // axisZNumeric
             // 
             this.axisZNumeric.DecimalPlaces = 2;
-            this.axisZNumeric.Location = new System.Drawing.Point(1336, 787);
+            this.axisZNumeric.Location = new System.Drawing.Point(1331, 881);
             this.axisZNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.axisZNumeric.Maximum = new decimal(new int[] {
             360,
@@ -372,7 +372,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1150, 762);
+            this.label2.Location = new System.Drawing.Point(1145, 856);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 16;
@@ -381,7 +381,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1248, 762);
+            this.label3.Location = new System.Drawing.Point(1243, 856);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 20);
             this.label3.TabIndex = 17;
@@ -390,7 +390,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1343, 762);
+            this.label4.Location = new System.Drawing.Point(1338, 856);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
             this.label4.TabIndex = 18;
@@ -399,7 +399,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1235, 694);
+            this.label5.Location = new System.Drawing.Point(1230, 788);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 20);
             this.label5.TabIndex = 19;
@@ -419,7 +419,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1109, 590);
+            this.label6.Location = new System.Drawing.Point(1116, 567);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 20);
@@ -429,7 +429,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1109, 639);
+            this.label7.Location = new System.Drawing.Point(1116, 616);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(18, 20);
@@ -439,7 +439,7 @@
             // numericUpDown10
             // 
             this.numericUpDown10.DecimalPlaces = 2;
-            this.numericUpDown10.Location = new System.Drawing.Point(1336, 637);
+            this.numericUpDown10.Location = new System.Drawing.Point(1343, 614);
             this.numericUpDown10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown10.Maximum = new decimal(new int[] {
             1000,
@@ -458,7 +458,7 @@
             // numericUpDown11
             // 
             this.numericUpDown11.DecimalPlaces = 2;
-            this.numericUpDown11.Location = new System.Drawing.Point(1240, 637);
+            this.numericUpDown11.Location = new System.Drawing.Point(1247, 614);
             this.numericUpDown11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown11.Maximum = new decimal(new int[] {
             1000,
@@ -477,7 +477,7 @@
             // numericUpDown12
             // 
             this.numericUpDown12.DecimalPlaces = 2;
-            this.numericUpDown12.Location = new System.Drawing.Point(1140, 637);
+            this.numericUpDown12.Location = new System.Drawing.Point(1147, 614);
             this.numericUpDown12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown12.Maximum = new decimal(new int[] {
             1000,
@@ -560,15 +560,15 @@
             // 
             // numericUpDownDivisions
             // 
-            this.numericUpDownDivisions.Location = new System.Drawing.Point(1124, 635);
+            this.numericUpDownDivisions.Location = new System.Drawing.Point(1141, 759);
             this.numericUpDownDivisions.Name = "numericUpDownDivisions";
-            this.numericUpDownDivisions.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDownDivisions.Size = new System.Drawing.Size(120, 26);
             this.numericUpDownDivisions.TabIndex = 31;
             this.numericUpDownDivisions.ValueChanged += new System.EventHandler(this.numericUpDownDivisions_ValueChanged);
             // 
             // DrawRevolveFigure
             // 
-            this.DrawRevolveFigure.Location = new System.Drawing.Point(1285, 550);
+            this.DrawRevolveFigure.Location = new System.Drawing.Point(1302, 671);
             this.DrawRevolveFigure.Name = "DrawRevolveFigure";
             this.DrawRevolveFigure.Size = new System.Drawing.Size(111, 107);
             this.DrawRevolveFigure.TabIndex = 32;
@@ -583,20 +583,37 @@
             "X",
             "Y",
             "Z"});
-            this.comboBoxAxis.Location = new System.Drawing.Point(1124, 583);
+            this.comboBoxAxis.Location = new System.Drawing.Point(1147, 704);
             this.comboBoxAxis.Name = "comboBoxAxis";
-            this.comboBoxAxis.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxAxis.Size = new System.Drawing.Size(121, 28);
             this.comboBoxAxis.TabIndex = 33;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1167, 505);
+            this.button1.Location = new System.Drawing.Point(1143, 648);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 23);
+            this.button1.Size = new System.Drawing.Size(110, 34);
             this.button1.TabIndex = 34;
             this.button1.Text = "Очистить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(1146, 685);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(167, 28);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Задать ось";
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(1145, 735);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(168, 21);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "Разбиения";
+            // 
             // numericX0
             // 
             this.numericX0.DecimalPlaces = 2;
@@ -725,11 +742,6 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1144, 564);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 16);
-            this.label12.TabIndex = 35;
-            this.label12.Text = "Задать ось";
             this.label9.Location = new System.Drawing.Point(1315, 83);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(122, 20);
@@ -739,11 +751,6 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1144, 616);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(79, 16);
-            this.label13.TabIndex = 36;
-            this.label13.Text = "Разбиения";
             this.label10.Location = new System.Drawing.Point(1116, 67);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(20, 20);
@@ -763,14 +770,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1411, 809);
+            this.ClientSize = new System.Drawing.Size(1444, 925);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBoxAxis);
             this.Controls.Add(this.DrawRevolveFigure);
             this.Controls.Add(this.numericUpDownDivisions);
-            this.ClientSize = new System.Drawing.Size(1444, 925);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
