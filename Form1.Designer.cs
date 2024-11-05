@@ -59,11 +59,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.NnumericX0 = new System.Windows.Forms.NumericUpDown();
-            this.NnumericX1 = new System.Windows.Forms.NumericUpDown();
-            this.NnumericY1 = new System.Windows.Forms.NumericUpDown();
-            this.NnumericY0 = new System.Windows.Forms.NumericUpDown();
-            this.stepNnumeric = new System.Windows.Forms.NumericUpDown();
+            this.numericX0 = new System.Windows.Forms.NumericUpDown();
+            this.numericX1 = new System.Windows.Forms.NumericUpDown();
+            this.numericY1 = new System.Windows.Forms.NumericUpDown();
+            this.numericY0 = new System.Windows.Forms.NumericUpDown();
+            this.stepNumeric = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -81,11 +81,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericScale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericX0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericX1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericY1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericY0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stepNnumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericX0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericX1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericY1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericY0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stepNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -548,100 +548,100 @@
             this.textBox3.Size = new System.Drawing.Size(86, 26);
             this.textBox3.TabIndex = 29;
             // 
-            // NnumericX0
+            // numericX0
             // 
-            this.NnumericX0.DecimalPlaces = 2;
-            this.NnumericX0.Location = new System.Drawing.Point(1143, 67);
-            this.NnumericX0.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.NnumericX0.Maximum = new decimal(new int[] {
+            this.numericX0.DecimalPlaces = 2;
+            this.numericX0.Location = new System.Drawing.Point(1143, 67);
+            this.numericX0.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericX0.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.NnumericX0.Minimum = new decimal(new int[] {
+            this.numericX0.Minimum = new decimal(new int[] {
             1000,
             0,
             0,
             -2147483648});
-            this.NnumericX0.Name = "NnumericX0";
-            this.NnumericX0.Size = new System.Drawing.Size(62, 26);
-            this.NnumericX0.TabIndex = 30;
+            this.numericX0.Name = "numericX0";
+            this.numericX0.Size = new System.Drawing.Size(62, 26);
+            this.numericX0.TabIndex = 30;
             // 
-            // NnumericX1
+            // numericX1
             // 
-            this.NnumericX1.DecimalPlaces = 2;
-            this.NnumericX1.Location = new System.Drawing.Point(1213, 67);
-            this.NnumericX1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.NnumericX1.Maximum = new decimal(new int[] {
+            this.numericX1.DecimalPlaces = 2;
+            this.numericX1.Location = new System.Drawing.Point(1213, 67);
+            this.numericX1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericX1.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.NnumericX1.Minimum = new decimal(new int[] {
+            this.numericX1.Minimum = new decimal(new int[] {
             1000,
             0,
             0,
             -2147483648});
-            this.NnumericX1.Name = "NnumericX1";
-            this.NnumericX1.Size = new System.Drawing.Size(62, 26);
-            this.NnumericX1.TabIndex = 31;
+            this.numericX1.Name = "numericX1";
+            this.numericX1.Size = new System.Drawing.Size(62, 26);
+            this.numericX1.TabIndex = 31;
             // 
-            // NnumericY1
+            // numericY1
             // 
-            this.NnumericY1.DecimalPlaces = 2;
-            this.NnumericY1.Location = new System.Drawing.Point(1213, 143);
-            this.NnumericY1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.NnumericY1.Maximum = new decimal(new int[] {
+            this.numericY1.DecimalPlaces = 2;
+            this.numericY1.Location = new System.Drawing.Point(1213, 143);
+            this.numericY1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericY1.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.NnumericY1.Minimum = new decimal(new int[] {
+            this.numericY1.Minimum = new decimal(new int[] {
             1000,
             0,
             0,
             -2147483648});
-            this.NnumericY1.Name = "NnumericY1";
-            this.NnumericY1.Size = new System.Drawing.Size(62, 26);
-            this.NnumericY1.TabIndex = 33;
+            this.numericY1.Name = "numericY1";
+            this.numericY1.Size = new System.Drawing.Size(62, 26);
+            this.numericY1.TabIndex = 33;
             // 
-            // NnumericY0
+            // numericY0
             // 
-            this.NnumericY0.DecimalPlaces = 2;
-            this.NnumericY0.Location = new System.Drawing.Point(1143, 143);
-            this.NnumericY0.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.NnumericY0.Maximum = new decimal(new int[] {
+            this.numericY0.DecimalPlaces = 2;
+            this.numericY0.Location = new System.Drawing.Point(1143, 143);
+            this.numericY0.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericY0.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.NnumericY0.Minimum = new decimal(new int[] {
+            this.numericY0.Minimum = new decimal(new int[] {
             1000,
             0,
             0,
             -2147483648});
-            this.NnumericY0.Name = "NnumericY0";
-            this.NnumericY0.Size = new System.Drawing.Size(62, 26);
-            this.NnumericY0.TabIndex = 32;
+            this.numericY0.Name = "numericY0";
+            this.numericY0.Size = new System.Drawing.Size(62, 26);
+            this.numericY0.TabIndex = 32;
             // 
-            // stepNnumeric
+            // stepNumeric
             // 
-            this.stepNnumeric.DecimalPlaces = 2;
-            this.stepNnumeric.Location = new System.Drawing.Point(1347, 108);
-            this.stepNnumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.stepNnumeric.Maximum = new decimal(new int[] {
+            this.stepNumeric.DecimalPlaces = 2;
+            this.stepNumeric.Location = new System.Drawing.Point(1347, 108);
+            this.stepNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.stepNumeric.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.stepNnumeric.Minimum = new decimal(new int[] {
+            this.stepNumeric.Minimum = new decimal(new int[] {
             1000,
             0,
             0,
             -2147483648});
-            this.stepNnumeric.Name = "stepNnumeric";
-            this.stepNnumeric.Size = new System.Drawing.Size(62, 26);
-            this.stepNnumeric.TabIndex = 34;
+            this.stepNumeric.Name = "stepNumeric";
+            this.stepNumeric.Size = new System.Drawing.Size(62, 26);
+            this.stepNumeric.TabIndex = 34;
             // 
             // label9
             // 
@@ -678,11 +678,11 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.stepNnumeric);
-            this.Controls.Add(this.NnumericY1);
-            this.Controls.Add(this.NnumericY0);
-            this.Controls.Add(this.NnumericX1);
-            this.Controls.Add(this.NnumericX0);
+            this.Controls.Add(this.stepNumeric);
+            this.Controls.Add(this.numericY1);
+            this.Controls.Add(this.numericY0);
+            this.Controls.Add(this.numericX1);
+            this.Controls.Add(this.numericX0);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -731,11 +731,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericScale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericX0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericX1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericY1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NnumericY0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stepNnumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericX0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericX1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericY1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericY0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stepNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -774,11 +774,11 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.NumericUpDown NnumericX0;
-        private System.Windows.Forms.NumericUpDown NnumericX1;
-        private System.Windows.Forms.NumericUpDown NnumericY1;
-        private System.Windows.Forms.NumericUpDown NnumericY0;
-        private System.Windows.Forms.NumericUpDown stepNnumeric;
+        private System.Windows.Forms.NumericUpDown numericX0;
+        private System.Windows.Forms.NumericUpDown numericX1;
+        private System.Windows.Forms.NumericUpDown numericY1;
+        private System.Windows.Forms.NumericUpDown numericY0;
+        private System.Windows.Forms.NumericUpDown stepNumeric;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;

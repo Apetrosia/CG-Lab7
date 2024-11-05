@@ -917,6 +917,7 @@ namespace CG_Lab
         {
             var surface = new PolyHedron();
 
+            //for (float i = numericX)
             /*
             cube.Vertices.Add(new Vertex(-1, -1, -1));
             cube.Vertices.Add(new Vertex(1, -1, -1));
