@@ -23,7 +23,7 @@ namespace CG_Lab
         Pen defaultPen = new Pen(Color.Black, 3);
 
         PolyHedron currentPolyhedron;
-
+        private List<Vertex> profilePoints = new List<Vertex>();
         public Form1()
         {
             InitializeComponent();
@@ -62,23 +62,7 @@ namespace CG_Lab
                 foreach (var vertexIndex in face.Vertices)
                 {
                     Vertex v = ph.Vertices[vertexIndex];
-
-                    //points.Add(ProjectParallel(v));
                     Vertex projectedVertex;
-                    /*switch (plane)
-                    {
-                        case "XY":
-                            projectedVertex = new Vertex(v.X, v.Y, v.Z);
-                            break;
-                        case "YZ":
-                            projectedVertex = new Vertex(v.Y, v.Z , v.X);
-                            break;
-                        case "XZ":
-                            projectedVertex = new Vertex(v.X, v.Z , v.Y);
-                            break;
-                        default:
-                            throw new ArgumentException("Invalid plane. Use 'XY', 'YZ', or 'XZ'.");
-                    }*/
                     projectedVertex = new Vertex(v.X, v.Y, v.Z);
                     //PointF projectedPoint = new PointF(projectedVertex.X, projectedVertex.Y);
                     PointF projectedPoint = projectedVertex.GetProjection(projectionListBox.SelectedIndex, pictureBox1.Width / 2, pictureBox1.Height / 2,
@@ -148,6 +132,7 @@ namespace CG_Lab
                                              .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0),
                                              currPlane);
                     break;
+
             }
         }
 
@@ -188,7 +173,25 @@ namespace CG_Lab
             numericUpDown11.Value = numericUpDown5.Value;
             numericUpDown4.Value = e.X;
             numericUpDown5.Value = e.Y;
+
+            profilePoints.Add(new Vertex(e.X, e.Y, 0));
         }
+       /* private void DrawProfile()
+        {
+            // Отображаем образующую на PictureBox
+            var g = pictureBox1.CreateGraphics();
+            g.Clear(pictureBox1.BackColor);
+            if (profilePoints.Count > 1)
+            {
+                g.DrawLines(Pens.Black, profilePoints);
+            }
+            foreach (var point in profilePoints)
+            {
+                g.FillEllipse(Brushes.Red, point.X - 2, point.Y - 2, 4, 4);
+            }
+        }*/
+
+
 
         private void affineOpButton_Click(object sender, EventArgs e)
         {
@@ -287,7 +290,8 @@ namespace CG_Lab
                     break;
             }
         }
-
+       
+        
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             DrawPolyhedron(currentPolyhedron, currPlane);
@@ -309,6 +313,38 @@ namespace CG_Lab
         {
             g.Clear(pictureBox1.BackColor);
             DrawPolyhedron(currentPolyhedron, currPlane);
+        }
+
+
+        private void DrawRevolveFigure_Click(object sender, EventArgs e)
+        {
+            int divisions = (int)numericUpDownDivisions.Value;
+            char axis = comboBoxAxis.SelectedItem.ToString()[0];
+
+            if (axis == 'X')
+                currentPolyhedron = PolyHedron.GetRevolvedFigure(profilePoints, divisions, axis)
+                                           .Moved(0, (float)pictureBox1.Height / 2 , (float)0);
+            else if (axis == 'Z')
+                currentPolyhedron = PolyHedron.GetRevolvedFigure(profilePoints, divisions, axis)
+                                           .Moved((float)pictureBox1.Width / 2, (float)pictureBox1.Height / 2, (float)0);
+            else
+                currentPolyhedron = PolyHedron.GetRevolvedFigure(profilePoints, divisions, axis)
+                                           .Moved((float)pictureBox1.Width / 2, 0, (float)0);
+
+            // Рисуем полученную фигуру вращения
+            DrawPolyhedron(currentPolyhedron, currPlane);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            profilePoints.Clear();
+            g.Clear(pictureBox1.BackColor);
+            pictureBox1.Invalidate();
+        }
+
+        private void numericUpDownDivisions_ValueChanged(object sender, EventArgs e)
+        {
+            DrawRevolveFigure_Click(sender,e);
         }
     }
 
@@ -401,6 +437,10 @@ namespace CG_Lab
             Y = y;
             Z = z;
         }
+        public Vertex Clone()
+        {
+            return new Vertex(X, Y, Z);
+        }
         public float DistanceTo(in Vertex other)
         {
             float xDelta = X - other.X;
@@ -409,7 +449,30 @@ namespace CG_Lab
 
             return (float)Math.Sqrt(xDelta * xDelta + yDelta * yDelta + zDelta * zDelta);
         }
+        // Метод для применения матрицы трансформации к вершине
+        public void ApplyMatrix(Matrix<float> transformationMatrix)
+        {
+            // Преобразуем вершину в однородные координаты (добавляем четвертую координату w = 1)
+            float[] vertexCoords = { X, Y, Z, 1 };
 
+            // Создаем массив для хранения новых координат после трансформации
+            float[] transformedCoords = new float[4];
+
+            // Умножаем матрицу на вершину (однородные координаты)
+            for (int row = 0; row < 4; row++)
+            {
+                transformedCoords[row] = 0;
+                for (int col = 0; col < 4; col++)
+                {
+                    transformedCoords[row] += transformationMatrix[row, col] * vertexCoords[col];
+                }
+            }
+
+            // Обновляем координаты вершины
+            X = transformedCoords[0];
+            Y = transformedCoords[1];
+            Z = transformedCoords[2];
+        }
         public PointF GetProjection(int projIndex, float w, float h, float ax, float ay)
         {
             PointF res = new PointF(0, 0);
@@ -722,7 +785,62 @@ namespace CG_Lab
                 .RotatedYAxis(yAngle)
                 .RotatedZAxis(zAngle);
         }
+        // Метод для создания фигуры вращения
+        public static PolyHedron GetRevolvedFigure(List<Vertex> profile, int divisions, char axis)
+        {
+            PolyHedron polyhedron = new PolyHedron();
+            float angleStep = 360f / divisions;
 
+            // Добавляем вершины
+            for (int i = 0; i < divisions; i++)
+            {
+                float angle = i * angleStep;
+                Matrix<float> rotationMatrix = GetRotationMatrix(axis, angle);
+
+                foreach (var vertex in profile)
+                {
+                    var rotatedVertex = vertex.Clone();
+                    rotatedVertex.ApplyMatrix(rotationMatrix);
+                    polyhedron.Vertices.Add(rotatedVertex);
+                }
+            }
+
+            // Создаем грани, соединяющие вершины
+            int profileCount = profile.Count;
+            for (int i = 0; i < divisions; i++)
+            {
+                int nextDiv = (i + 1) % divisions;
+                for (int j = 0; j < profileCount - 1; j++)
+                {
+                    int v1 = i * profileCount + j;
+                    int v2 = nextDiv * profileCount + j;
+                    int v3 = nextDiv * profileCount + j + 1;
+                    int v4 = i * profileCount + j + 1;
+                    polyhedron.Faces.Add(new Face(v1, v2, v3, v4));
+                }
+            }
+
+            return polyhedron;
+        }
+
+        private static Matrix<float> GetRotationMatrix(char axis, float angleDegrees)
+        {
+            float angle = angleDegrees * (float)(Math.PI / 180);
+            float cos = (float)Math.Cos(angle);
+            float sin = (float)Math.Sin(angle);
+
+            switch (axis)
+            {
+                case 'X':
+                    return new Matrix<float>(new float[,] { { 1, 0, 0, 0 }, { 0, cos, -sin, 0 }, { 0, sin, cos, 0 }, { 0, 0, 0, 1 } });
+                case 'Y':
+                    return new Matrix<float>(new float[,] { { cos, 0, sin, 0 }, { 0, 1, 0, 0 }, { -sin, 0, cos, 0 }, { 0, 0, 0, 1 } });
+                case 'Z':
+                    return new Matrix<float>(new float[,] { { cos, -sin, 0, 0 }, { sin, cos, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } });
+                default:
+                    throw new ArgumentException("Axis must be X, Y, or Z.");
+            };
+        }
         public static PolyHedron GetCube()
         {
             var cube = new PolyHedron();
@@ -901,6 +1019,7 @@ namespace CG_Lab
 
             return dodeca;
         }
+
 
         public Vertex GetFaceCenter(Face face)
         {

@@ -59,6 +59,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.numericUpDownDivisions = new System.Windows.Forms.NumericUpDown();
+            this.DrawRevolveFigure = new System.Windows.Forms.Button();
+            this.comboBoxAxis = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -73,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDivisions)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -84,8 +91,8 @@
             "Отобразить октаэдр",
             "Отобразить икосаэдр",
             "Отобразить додекаэдр"});
-            this.comboBox1.Location = new System.Drawing.Point(995, 14);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Location = new System.Drawing.Point(1119, 12);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(278, 24);
             this.comboBox1.TabIndex = 0;
@@ -95,8 +102,8 @@
             // reflectionComboBox
             // 
             this.reflectionComboBox.FormattingEnabled = true;
-            this.reflectionComboBox.Location = new System.Drawing.Point(996, 82);
-            this.reflectionComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reflectionComboBox.Location = new System.Drawing.Point(1120, 44);
+            this.reflectionComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.reflectionComboBox.Name = "reflectionComboBox";
             this.reflectionComboBox.Size = new System.Drawing.Size(278, 24);
             this.reflectionComboBox.TabIndex = 0;
@@ -106,9 +113,9 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(13, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(973, 736);
+            this.pictureBox1.Size = new System.Drawing.Size(1096, 794);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
@@ -116,8 +123,8 @@
             // numericUpDown1
             // 
             this.numericUpDown1.DecimalPlaces = 2;
-            this.numericUpDown1.Location = new System.Drawing.Point(1012, 318);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Location = new System.Drawing.Point(1147, 225);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -135,8 +142,8 @@
             // numericUpDown2
             // 
             this.numericUpDown2.DecimalPlaces = 2;
-            this.numericUpDown2.Location = new System.Drawing.Point(1101, 318);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown2.Location = new System.Drawing.Point(1236, 225);
+            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -154,8 +161,8 @@
             // numericUpDown3
             // 
             this.numericUpDown3.DecimalPlaces = 2;
-            this.numericUpDown3.Location = new System.Drawing.Point(1188, 318);
-            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown3.Location = new System.Drawing.Point(1323, 225);
+            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -181,8 +188,8 @@
             "Вращение параллельно OX",
             "Вращение параллельно OY",
             "Вращение параллельно OZ"});
-            this.comboBox2.Location = new System.Drawing.Point(989, 242);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Location = new System.Drawing.Point(1113, 162);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(283, 24);
             this.comboBox2.TabIndex = 5;
@@ -191,7 +198,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1085, 364);
+            this.label1.Location = new System.Drawing.Point(1220, 271);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 16);
@@ -201,8 +208,8 @@
             // numericUpDown4
             // 
             this.numericUpDown4.DecimalPlaces = 2;
-            this.numericUpDown4.Location = new System.Drawing.Point(1013, 384);
-            this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown4.Location = new System.Drawing.Point(1148, 291);
+            this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -220,8 +227,8 @@
             // numericUpDown5
             // 
             this.numericUpDown5.DecimalPlaces = 2;
-            this.numericUpDown5.Location = new System.Drawing.Point(1102, 384);
-            this.numericUpDown5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown5.Location = new System.Drawing.Point(1237, 291);
+            this.numericUpDown5.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -239,8 +246,8 @@
             // numericUpDown6
             // 
             this.numericUpDown6.DecimalPlaces = 2;
-            this.numericUpDown6.Location = new System.Drawing.Point(1188, 384);
-            this.numericUpDown6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown6.Location = new System.Drawing.Point(1323, 291);
+            this.numericUpDown6.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -262,8 +269,8 @@
             "Перспективная",
             "Ортографическая",
             "Аксонометрическая"});
-            this.projectionListBox.Location = new System.Drawing.Point(1012, 489);
-            this.projectionListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.projectionListBox.Location = new System.Drawing.Point(1147, 396);
+            this.projectionListBox.Margin = new System.Windows.Forms.Padding(4);
             this.projectionListBox.Name = "projectionListBox";
             this.projectionListBox.Size = new System.Drawing.Size(249, 24);
             this.projectionListBox.TabIndex = 12;
@@ -273,8 +280,8 @@
             // axisXNumeric
             // 
             this.axisXNumeric.DecimalPlaces = 2;
-            this.axisXNumeric.Location = new System.Drawing.Point(1012, 543);
-            this.axisXNumeric.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.axisXNumeric.Location = new System.Drawing.Point(1147, 450);
+            this.axisXNumeric.Margin = new System.Windows.Forms.Padding(4);
             this.axisXNumeric.Maximum = new decimal(new int[] {
             360,
             0,
@@ -298,8 +305,8 @@
             // axisYNumeric
             // 
             this.axisYNumeric.DecimalPlaces = 2;
-            this.axisYNumeric.Location = new System.Drawing.Point(1101, 543);
-            this.axisYNumeric.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.axisYNumeric.Location = new System.Drawing.Point(1236, 450);
+            this.axisYNumeric.Margin = new System.Windows.Forms.Padding(4);
             this.axisYNumeric.Maximum = new decimal(new int[] {
             360,
             0,
@@ -323,8 +330,8 @@
             // axisZNumeric
             // 
             this.axisZNumeric.DecimalPlaces = 2;
-            this.axisZNumeric.Location = new System.Drawing.Point(1188, 543);
-            this.axisZNumeric.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.axisZNumeric.Location = new System.Drawing.Point(1323, 450);
+            this.axisZNumeric.Margin = new System.Windows.Forms.Padding(4);
             this.axisZNumeric.Maximum = new decimal(new int[] {
             360,
             0,
@@ -348,7 +355,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1022, 523);
+            this.label2.Location = new System.Drawing.Point(1157, 430);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 16);
             this.label2.TabIndex = 16;
@@ -357,7 +364,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1109, 523);
+            this.label3.Location = new System.Drawing.Point(1244, 430);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 16);
             this.label3.TabIndex = 17;
@@ -366,7 +373,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1194, 523);
+            this.label4.Location = new System.Drawing.Point(1329, 430);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 18;
@@ -375,7 +382,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1098, 469);
+            this.label5.Location = new System.Drawing.Point(1233, 376);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 16);
             this.label5.TabIndex = 19;
@@ -383,7 +390,7 @@
             // 
             // affineOpButton
             // 
-            this.affineOpButton.Location = new System.Drawing.Point(1072, 271);
+            this.affineOpButton.Location = new System.Drawing.Point(1194, 192);
             this.affineOpButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.affineOpButton.Name = "affineOpButton";
             this.affineOpButton.Size = new System.Drawing.Size(131, 27);
@@ -395,7 +402,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(986, 386);
+            this.label6.Location = new System.Drawing.Point(1121, 293);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(14, 16);
@@ -405,7 +412,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(986, 425);
+            this.label7.Location = new System.Drawing.Point(1121, 332);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(14, 16);
@@ -415,8 +422,8 @@
             // numericUpDown10
             // 
             this.numericUpDown10.DecimalPlaces = 2;
-            this.numericUpDown10.Location = new System.Drawing.Point(1188, 423);
-            this.numericUpDown10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown10.Location = new System.Drawing.Point(1323, 330);
+            this.numericUpDown10.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown10.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -434,8 +441,8 @@
             // numericUpDown11
             // 
             this.numericUpDown11.DecimalPlaces = 2;
-            this.numericUpDown11.Location = new System.Drawing.Point(1102, 423);
-            this.numericUpDown11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown11.Location = new System.Drawing.Point(1237, 330);
+            this.numericUpDown11.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown11.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -453,8 +460,8 @@
             // numericUpDown12
             // 
             this.numericUpDown12.DecimalPlaces = 2;
-            this.numericUpDown12.Location = new System.Drawing.Point(1013, 423);
-            this.numericUpDown12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown12.Location = new System.Drawing.Point(1148, 330);
+            this.numericUpDown12.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown12.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -472,7 +479,7 @@
             // labelScale
             // 
             this.labelScale.AutoSize = true;
-            this.labelScale.Location = new System.Drawing.Point(992, 108);
+            this.labelScale.Location = new System.Drawing.Point(1116, 72);
             this.labelScale.Name = "labelScale";
             this.labelScale.Size = new System.Drawing.Size(273, 16);
             this.labelScale.TabIndex = 2;
@@ -486,21 +493,21 @@
             0,
             0,
             65536});
-            this.numericScale.Location = new System.Drawing.Point(1104, 138);
+            this.numericScale.Location = new System.Drawing.Point(1220, 91);
             this.numericScale.Name = "numericScale";
             this.numericScale.Size = new System.Drawing.Size(94, 22);
             this.numericScale.TabIndex = 3;
             this.numericScale.Value = new decimal(new int[] {
-            1,
+            4,
             0,
             0,
-            0});
+            65536});
             this.numericScale.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1093, 174);
+            this.label8.Location = new System.Drawing.Point(1211, 116);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 16);
             this.label8.TabIndex = 26;
@@ -508,7 +515,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1012, 208);
+            this.textBox1.Location = new System.Drawing.Point(1137, 134);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -517,7 +524,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(1102, 208);
+            this.textBox2.Location = new System.Drawing.Point(1220, 134);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -526,18 +533,82 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(1184, 208);
+            this.textBox3.Location = new System.Drawing.Point(1303, 134);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(77, 22);
             this.textBox3.TabIndex = 29;
             // 
+            // numericUpDownDivisions
+            // 
+            this.numericUpDownDivisions.Location = new System.Drawing.Point(1124, 635);
+            this.numericUpDownDivisions.Name = "numericUpDownDivisions";
+            this.numericUpDownDivisions.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDownDivisions.TabIndex = 31;
+            this.numericUpDownDivisions.ValueChanged += new System.EventHandler(this.numericUpDownDivisions_ValueChanged);
+            // 
+            // DrawRevolveFigure
+            // 
+            this.DrawRevolveFigure.Location = new System.Drawing.Point(1285, 550);
+            this.DrawRevolveFigure.Name = "DrawRevolveFigure";
+            this.DrawRevolveFigure.Size = new System.Drawing.Size(111, 107);
+            this.DrawRevolveFigure.TabIndex = 32;
+            this.DrawRevolveFigure.Text = "Создать фигуру вращения";
+            this.DrawRevolveFigure.UseVisualStyleBackColor = true;
+            this.DrawRevolveFigure.Click += new System.EventHandler(this.DrawRevolveFigure_Click);
+            // 
+            // comboBoxAxis
+            // 
+            this.comboBoxAxis.FormattingEnabled = true;
+            this.comboBoxAxis.Items.AddRange(new object[] {
+            "X",
+            "Y",
+            "Z"});
+            this.comboBoxAxis.Location = new System.Drawing.Point(1124, 583);
+            this.comboBoxAxis.Name = "comboBoxAxis";
+            this.comboBoxAxis.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxAxis.TabIndex = 33;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1167, 505);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 23);
+            this.button1.TabIndex = 34;
+            this.button1.Text = "Очистить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1144, 564);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(79, 16);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Задать ось";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1144, 616);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(79, 16);
+            this.label10.TabIndex = 36;
+            this.label10.Text = "Разбиения";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 740);
+            this.ClientSize = new System.Drawing.Size(1411, 809);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBoxAxis);
+            this.Controls.Add(this.DrawRevolveFigure);
+            this.Controls.Add(this.numericUpDownDivisions);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -569,7 +640,7 @@
             this.Controls.Add(this.numericScale);
             this.Controls.Add(this.labelScale);
             this.Controls.Add(this.reflectionComboBox);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -586,6 +657,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDivisions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -624,6 +696,12 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.NumericUpDown numericUpDownDivisions;
+        private System.Windows.Forms.Button DrawRevolveFigure;
+        private System.Windows.Forms.ComboBox comboBoxAxis;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 
