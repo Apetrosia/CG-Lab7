@@ -564,13 +564,18 @@
             0,
             -2147483648});
             this.numericX0.Name = "numericX0";
-            this.numericX0.Size = new System.Drawing.Size(62, 26);
+            this.numericX0.Size = new System.Drawing.Size(74, 26);
             this.numericX0.TabIndex = 30;
+            this.numericX0.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             // 
             // numericX1
             // 
             this.numericX1.DecimalPlaces = 2;
-            this.numericX1.Location = new System.Drawing.Point(1213, 67);
+            this.numericX1.Location = new System.Drawing.Point(1225, 67);
             this.numericX1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericX1.Maximum = new decimal(new int[] {
             1000,
@@ -583,13 +588,18 @@
             0,
             -2147483648});
             this.numericX1.Name = "numericX1";
-            this.numericX1.Size = new System.Drawing.Size(62, 26);
+            this.numericX1.Size = new System.Drawing.Size(76, 26);
             this.numericX1.TabIndex = 31;
+            this.numericX1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numericY1
             // 
             this.numericY1.DecimalPlaces = 2;
-            this.numericY1.Location = new System.Drawing.Point(1213, 143);
+            this.numericY1.Location = new System.Drawing.Point(1225, 143);
             this.numericY1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericY1.Maximum = new decimal(new int[] {
             1000,
@@ -602,8 +612,13 @@
             0,
             -2147483648});
             this.numericY1.Name = "numericY1";
-            this.numericY1.Size = new System.Drawing.Size(62, 26);
+            this.numericY1.Size = new System.Drawing.Size(76, 26);
             this.numericY1.TabIndex = 33;
+            this.numericY1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numericY0
             // 
@@ -621,12 +636,22 @@
             0,
             -2147483648});
             this.numericY0.Name = "numericY0";
-            this.numericY0.Size = new System.Drawing.Size(62, 26);
+            this.numericY0.Size = new System.Drawing.Size(74, 26);
             this.numericY0.TabIndex = 32;
+            this.numericY0.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             // 
             // stepNumeric
             // 
             this.stepNumeric.DecimalPlaces = 2;
+            this.stepNumeric.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.stepNumeric.Location = new System.Drawing.Point(1347, 108);
             this.stepNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.stepNumeric.Maximum = new decimal(new int[] {
@@ -640,8 +665,13 @@
             0,
             -2147483648});
             this.stepNumeric.Name = "stepNumeric";
-            this.stepNumeric.Size = new System.Drawing.Size(62, 26);
+            this.stepNumeric.Size = new System.Drawing.Size(71, 26);
             this.stepNumeric.TabIndex = 34;
+            this.stepNumeric.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // label9
             // 

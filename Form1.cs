@@ -153,9 +153,10 @@ namespace CG_Lab
                                              currPlane);
                     break;
                 case (int)RenderingOp.Func1:
-                    DrawPolyhedron(currentPolyhedron = PolyHedron.GetDodecahedron()
-                                             .Rotated(10, 10, 0)
-                                             .Scaled(200, 200, 200)
+                    DrawPolyhedron(currentPolyhedron = PolyHedron.GetFunc1((float)numericX0.Value, (float)numericX1.Value,
+                        (float)numericY0.Value, (float)numericY1.Value, (float)stepNumeric.Value)
+                                             .Rotated(90, 10, 0)
+                                             .Scaled(100, 100, 100)
                                              .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0),
                                              currPlane);
                     break;
@@ -913,28 +914,22 @@ namespace CG_Lab
             return dodeca;
         }
 
-        public static PolyHedron GetFunc1()
+        public static PolyHedron GetFunc1(float x0, float x1, float y0, float y1, float step)
         {
             var surface = new PolyHedron();
+            int xLength = (int)((x1 - x0) / step + 1);
+            int ind = -1;
 
-            //for (float i = numericX)
-            /*
-            cube.Vertices.Add(new Vertex(-1, -1, -1));
-            cube.Vertices.Add(new Vertex(1, -1, -1));
-            cube.Vertices.Add(new Vertex(1, 1, -1));
-            cube.Vertices.Add(new Vertex(-1, 1, -1));
-            cube.Vertices.Add(new Vertex(-1, -1, 1));
-            cube.Vertices.Add(new Vertex(1, -1, 1));
-            cube.Vertices.Add(new Vertex(1, 1, 1));
-            cube.Vertices.Add(new Vertex(-1, 1, 1));
-
-            cube.Faces.Add(new Face(0, 1, 2, 3));
-            cube.Faces.Add(new Face(4, 5, 6, 7));
-            cube.Faces.Add(new Face(0, 1, 5, 4));
-            cube.Faces.Add(new Face(3, 2, 6, 7));
-            cube.Faces.Add(new Face(1, 2, 6, 5));
-            cube.Faces.Add(new Face(0, 3, 7, 4));
-            */
+            for (float i = x0; i  <= x1; i+= step)
+            {
+                for (float j = y0; j <= y1; j += step)
+                {
+                    surface.Vertices.Add(new Vertex(i, j, i*i + j*j));
+                    ind++;
+                    if (i != x0 && j != y0)
+                        surface.Faces.Add(new Face(ind, ind - 1, ind - xLength - 1, ind = xLength));
+                }
+            }
 
             return surface;
         }
