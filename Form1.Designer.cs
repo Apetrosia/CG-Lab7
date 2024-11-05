@@ -671,10 +671,10 @@
             this.stepNumeric.Size = new System.Drawing.Size(71, 26);
             this.stepNumeric.TabIndex = 34;
             this.stepNumeric.Value = new decimal(new int[] {
-            1,
+            15,
             0,
             0,
-            65536});
+            131072});
             // 
             // label9
             // 
