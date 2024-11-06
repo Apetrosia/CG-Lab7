@@ -350,22 +350,20 @@ namespace CG_Lab
             numericUpDown4.Value = e.X;
             numericUpDown5.Value = e.Y;
 
-            profilePoints.Add(new Vertex(e.X, e.Y, 0));
+            profilePoints.Add(new Vertex(e.X - pictureBox1.Width / 2, e.Y - pictureBox1.Height / 2, 0));
+            DrawProfile();
         }
-       /* private void DrawProfile()
+        private void DrawProfile()
         {
             // Отображаем образующую на PictureBox
             var g = pictureBox1.CreateGraphics();
             g.Clear(pictureBox1.BackColor);
-            if (profilePoints.Count > 1)
-            {
-                g.DrawLines(Pens.Black, profilePoints);
-            }
+
             foreach (var point in profilePoints)
             {
-                g.FillEllipse(Brushes.Red, point.X - 2, point.Y - 2, 4, 4);
+                g.FillEllipse(Brushes.Red, point.X - 2 + pictureBox1.Width / 2, point.Y - 2 + pictureBox1.Height / 2, 4, 4);
             }
-        }*/
+        }
 
 
 
@@ -484,6 +482,7 @@ namespace CG_Lab
             int divisions = (int)numericUpDownDivisions.Value;
             char axis = comboBoxAxis.SelectedItem.ToString()[0];
 
+            /*
             if (axis == 'X')
                 currentPolyhedron = PolyHedron.GetRevolvedFigure(profilePoints, divisions, axis)
                                            .Moved(0, (float)pictureBox1.Height / 2 , (float)0);
@@ -493,7 +492,10 @@ namespace CG_Lab
             else
                 currentPolyhedron = PolyHedron.GetRevolvedFigure(profilePoints, divisions, axis)
                                            .Moved((float)pictureBox1.Width / 2, 0, (float)0);
-
+            */
+            currentPolyhedron = PolyHedron.GetRevolvedFigure(profilePoints, divisions, axis)
+                .Moved(pictureBox1.Width / 2 , pictureBox1.Height / 2, 0);
+            
             // Рисуем полученную фигуру вращения
             DrawPolyhedron(currentPolyhedron, currPlane);
         }
@@ -501,13 +503,14 @@ namespace CG_Lab
         private void button3_Click(object sender, EventArgs e)
         {
             profilePoints.Clear();
-            g.Clear(pictureBox1.BackColor);
-            pictureBox1.Invalidate();
+            //g.Clear(pictureBox1.BackColor);
+            //pictureBox1.Invalidate();
+            pictureBox1.Image = clearPB;
         }
 
         private void numericUpDownDivisions_ValueChanged(object sender, EventArgs e)
         {
-            DrawRevolveFigure_Click(sender,e);
+            //DrawRevolveFigure_Click(sender,e);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -524,15 +527,15 @@ namespace CG_Lab
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                try
+                //try
                 {
                     currentPolyhedron.SaveToObj(saveFileDialog1.FileName);
                     MessageBox.Show("Модель успешно сохранена.", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
+                /*catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при сохранении файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                }*/
             }
         }
 
@@ -540,110 +543,22 @@ namespace CG_Lab
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                try
+                //try
                 {
-                    DrawPolyhedron(currentPolyhedron = PolyHedron.LoadFromObj(openFileDialog1.FileName)
-                        .Scaled(100, 100, 100)
-                        .RotatedXAxis(180)
-                        .Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0), currPlane);
+                    DrawPolyhedron(currentPolyhedron = PolyHedron.LoadFromObj(openFileDialog1.FileName), currPlane);
+                        //.Scaled(100, 100, 100)
+                        //.RotatedXAxis(180)
+                        //.Moved(pictureBox1.Width / 2, pictureBox1.Height / 2, 0), currPlane);
                     MessageBox.Show("Модель успешно загружена.", "Загрузка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
+                /*catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                }*/
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stepNumeric_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericY1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericY0_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericX1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericX0_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelScale_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class Matrix<T> where T : struct, IConvertible
@@ -1208,6 +1123,8 @@ namespace CG_Lab
                 }
             }
 
+            CalculateNormals(polyhedron);
+
             return polyhedron;
         }
 
@@ -1546,6 +1463,8 @@ namespace CG_Lab
                 }
             }
 
+            CalculateNormals(surface);
+
             return surface;
         }
 
@@ -1578,6 +1497,8 @@ namespace CG_Lab
                         surface.Faces.Add(new Face(ind, ind - xLength, ind - xLength - 1, ind - 1));
                 }
             }
+
+            CalculateNormals(surface);
 
             return surface;
         }
@@ -1612,6 +1533,8 @@ namespace CG_Lab
                 }
             }
 
+            CalculateNormals(surface);
+
             return surface;
         }
 
@@ -1645,6 +1568,8 @@ namespace CG_Lab
                         surface.Faces.Add(new Face(ind, ind - xLength, ind - xLength - 1, ind - 1));
                 }
             }
+
+            CalculateNormals(surface);
 
             return surface;
         }
@@ -1853,6 +1778,8 @@ namespace CG_Lab
                                 vertices[vertexIndex].Y,
                                 vertices[vertexIndex].Z
                             );
+
+                        polyhedron.Normals = new List<Normal>(Enumerable.Repeat(new Normal(0, 0, 0), vertices.Count));
 
                         // Присваиваем нормаль, если она есть
                         if (indices.Length > 2 && int.TryParse(indices[2], out int normalIndex))
